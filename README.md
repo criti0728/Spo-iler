@@ -1,3 +1,6 @@
+![image](https://github.com/user-attachments/assets/3e299843-a8a2-4273-95f6-4cb07fdc6a00)
+
+
 # Sports Match Prediction Program
 
 This program aims to predict the outcome of sports matches by analyzing the facial expressions of players, coaches, or other personnel involved in the game. Using advanced facial recognition and emotion analysis technologies, the program extracts emotions from facial expressions, evaluates game dynamics, and calculates the probability of victory. Users can also access the results and their associated photos through a personalized profile page.
