@@ -1,71 +1,149 @@
-[구글독스](https://docs.google.com/document/d/1SGMtZOGRSk42DyslsK9BDZlZRZfsByDZmD9C12JSYds/edit?usp=sharing)
-[피그마](https://www.figma.com/design/73VSLdfkhjtWZpaeU1hbZm/%EC%8A%B9%EB%B6%80%EC%98%88%EC%B8%A1?node-id=0-1&t=4Yoyy4iRh3Dn3wLv-1)
-[노션](https://www.notion.so/PJT-B-11b943c01a2e80f6ade6db84130922d3)
-![komi](https://github.com/user-attachments/assets/c08f2e48-f744-42cf-abbe-68e59be61b23)
+# Sports Match Prediction Program
 
-
-# **Spo-iler 프로젝트 보고서**
-
-## **1. 기획 배경 및 목적**
-### **기획 배경**
-스포츠 경기는 관객들에게 흥미진진한 경험을 선사하지만, 경기 규칙을 잘 모르는 사람들에게는 이해하기 어렵고 흥미를 잃게 만드는 경우가 많습니다. 이러한 문제를 해결하고, 누구나 스포츠 이벤트를 즐길 수 있도록 돕기 위해 **"Spo-iler"** 프로젝트가 시작되었습니다.
-
-### **목적**
-"**Spo-iler**"는 선수와 감독의 표정을 분석하여 경기의 흐름을 예측하고, 사용자에게 직관적으로 승률과 판도를 제공함으로써 스포츠 이벤트에 대한 이해를 돕는 웹 서비스입니다. 이를 통해 스포츠 초보자도 경기에 자연스럽게 참여할 수 있는 기회를 제공합니다.
+This program aims to predict the outcome of sports matches by analyzing the facial expressions of players, coaches, or other personnel involved in the game. Using advanced facial recognition and emotion analysis technologies, the program extracts emotions from facial expressions, evaluates game dynamics, and calculates the probability of victory. Users can also access the results and their associated photos through a personalized profile page.
 
 ---
 
-## **2. 프레임워크 및 툴의 선정 이유**
+# Detailed Design Document
 
-### **프론트엔드**
-- **Vue.js**: 
-  - 경량화된 SPA(Single Page Application) 개발에 적합.
-  - 컴포넌트 기반 구조로 코드 재사용성과 유지보수성을 극대화.
-- **Vue Router**: 
-  - 클라이언트 사이드에서 빠르고 매끄러운 라우팅 제공.
-- **Vuex**: 
-  - 중앙 상태 관리로 컴포넌트 간 데이터 동기화를 간소화.
-- **Axios**: 
-  - 효율적인 HTTP 요청 처리를 위해 사용.
+## 1. Requirements Definition
 
-### **백엔드**
-- **Spring Boot**: 
-  - 신속한 설정과 개발을 지원하며, RESTful API 구현에 적합.
-- **Spring Security**: 
-  - 인증 및 권한 관리의 표준 솔루션으로, 안전한 서비스 제공.
-- **Hibernate (JPA)**: 
-  - 데이터베이스와의 원활한 연동 및 NoSQL 데이터 처리 지원.
-- **JWT (JSON Web Token)**: 
-  - 세션리스 인증을 통해 확장성과 서버 부하를 줄임.
+The requirements for this project are categorized as follows:
 
-### **AI 및 데이터 분석**
-- **TensorFlow.js**: 
-  - 브라우저 기반 실시간 얼굴 탐지 및 감정 분석 가능.
-  - MobileNet 기반 경량 모델로, 다양한 환경에서 최적화된 성능 제공.
-- **AI Hub 데이터**: 
-  - 한국인 감정을 학습한 데이터로 정확성을 높임.
+### 1.1 User Features
+- **Sign-up**: Allows users to create an account by entering their details.
+- **Login/Logout**: Users securely access and exit the system.
+
+### 1.2 Management Features
+- **Role Management**: Restrict access to resources based on user roles.
+- **Admin Page**: Manage all user information and activity logs.
+
+### 1.3 Security Features
+- **JWT-based Authentication**: Manage sessions using tokens.
+- **Data Encryption**: Encrypt user passwords for secure storage.
+
+### 1.4 Game Analysis Features
+- Input the current status of the game and upload photos of game personnel.
+- Extract emotions from facial expressions in the uploaded photos.
+- Predict the flow of the game and calculate victory probabilities based on the extracted emotions.
+- Display photos submitted for analysis on the user's profile page.
 
 ---
 
-## **3. 기대 효과**
+## 2. Use Case Diagram
 
-### **사용자 관점**
-- **스포츠 초보자 친화적**: 
-  - 경기 규칙을 잘 모르는 사용자도 승률 예측을 통해 경기를 즐길 수 있음.
-- **직관적 이해 제공**: 
-  - 표정을 기반으로 한 분석 결과는 복잡한 데이터 대신 간단한 시각적 정보를 제공.
-- **참여도 향상**: 
-  - 스포츠 이벤트 참여의 장벽을 낮춰, 새로운 팬층 유입 기대.
+### Actors
+- **User**: Represents individuals interacting with the system.
 
-### **비즈니스 관점**
-- **스포츠 플랫폼 확장 가능성**: 
-  - 기존 스포츠 중계 서비스와 결합하여 추가 수익 창출 가능.
-- **데이터 기반 서비스 강화**: 
-  - 표정 분석과 경기 데이터를 활용해 더 많은 기능(예: 선수 성향 분석, 팀 전략 추천) 추가 가능.
-- **글로벌 진출 잠재력**: 
-  - 다양한 스포츠와 문화를 반영해 글로벌 사용자층을 확보할 수 있음.
+### Use Cases
+1. **Sign-up**: Create a new account.
+2. **Login/Logout**: Authenticate users for system access.
+3. **Profile Page Access**: View logs of previously analyzed photos.
+4. **Game Data Input**: Submit game details and associated photos for analysis.
+5. **Emotion Analysis**: Extract emotions from photos and calculate victory probabilities.
 
 ---
 
+## 3. Database Structure (ERD)
 
-![웹페이지 구성](./mock-up/web_ver1.PNG)
+This project utilizes NoSQL for stability, with tables generated through Hibernate. The main database structure is as follows:
+
+| Table Name   | Columns                        | Description                     |
+|--------------|--------------------------------|---------------------------------|
+| **Role**     | `id`, `name`                  | Stores user role information.  |
+| **User**     | `id`, `username`, `email`, `password` | Stores user details.          |
+| **User_Role**| `user_id`, `role_id`          | Manages many-to-many relations.|
+
+---
+
+## 4. Class Diagram
+
+The key classes in this project and their relationships are as follows:
+
+### 4.1 User
+- **Attributes**: `id`, `username`, `email`, `password`
+- **Methods**: Authentication-related logic.
+
+### 4.2 Role
+- **Attributes**: `id`, `name`
+- **Methods**: Role management logic.
+
+### 4.3 EmotionAnalysis
+- **Attributes**: `photo`, `emotions`, `victoryProbability`
+- **Methods**: Analyze emotions and calculate winning probabilities.
+
+### 4.4 AuthController
+- Handles sign-up and login/logout functionality.
+
+### 4.5 PhotoRepository
+- Stores photo data and links them to analysis results.
+
+---
+
+## 5. Libraries and Frameworks
+
+### Frontend
+- **Vue.js**: A framework for building user interfaces, supporting component-based architecture for code reusability.
+- **Vue Router**: Manages client-side routing for seamless navigation.
+- **Vuex**: Simplifies application state management.
+- **Axios**: Handles HTTP requests to the backend.
+
+### Backend
+- **Spring Boot**: Streamlines application setup and development.
+- **Spring Security**: Provides high-level security for authentication and authorization.
+- **Hibernate (JPA)**: Simplifies database operations by mapping objects to database tables.
+- **JWT**: Ensures secure stateless authentication between client and server.
+
+---
+
+## 6. Reasons for Framework Choices
+
+### Frontend
+- **Vue.js**: Lightweight and efficient for developing SPA (Single Page Applications).
+- **Vue Router**: Enhances user experience by enabling routing without page reloads.
+- **Vuex**: Solves complex state synchronization across components.
+
+### Backend
+- **Spring Boot**: Provides an easy-to-setup environment for scalable development.
+- **Spring Security**: Standardizes authentication and authorization processes to prevent vulnerabilities.
+- **Hibernate (JPA)**: Ensures stability and ease of deployment by abstracting database interactions.
+- **JWT**: Implements stateless authentication, reducing server load and enhancing scalability.
+
+---
+
+## 7. Face Recognition Modeling and Related API Usage
+- The face recognition modeling in this project was built using the **face-api.js** package.
+- Methods provided by the model, such as `matchDimensions` and `TinyFaceDetectorOptions`, were utilized to simplify method calls.
+- For image detection and emotion analysis, a custom-trained model was applied.
+  - The training process was conducted in a development environment equipped with a high-performance GPU.
+  - The trained model was converted into the TensorFlow.js format, separating the weight information into a `shard1` file and the module for communication with Vue and other frameworks into a JSON file.
+
+---
+
+### 7-1. Face Detection Module
+#### Files:
+- **tiny_face_model-shard1**  
+- **tiny_face_detector_model-weights_manifest.json**
+
+#### Details:
+- Used **TensorFlow.js** to detect human face contours.
+- The `weights_manifest.json` file converts the detected face contours into a JSON format for communication with Vue.
+- Utilized **CNN (Convolutional Neural Networks)** to detect faces, incorporating **Depthwise Separable Convolution** to optimize the model's lightweight nature.
+- The model was trained with various image augmentations, such as brightness adjustment and rotation, to handle diverse lighting conditions and angles.
+- A lightweight structure based on **MobileNet** was adopted to enable real-time analysis.
+
+---
+
+### 7-2. Facial Expression Recognition Module
+#### Files:
+- **face_expression_model-shard1**  
+- **face_expression_model-weights_manifest.json**
+
+#### Details:
+- Used **TensorFlow.js** to recognize facial expressions of detected faces.
+- The training was conducted with images designed for Korean emotion recognition, available via the following link:  
+  [Korean Emotion Recognition Dataset](https://aihub.or.kr/aihubdata/data/view.do?currMenu=115&topMenu=100&aihubDataSe=realm&dataSetSn=82)
+- Seven emotion labels were applied:
+  - `neutral`, `sad`, `surprised`, `happy`, `angry`, `disgusted`, `scared`.
+- Enabled GPU acceleration within browsers by leveraging **WebGL**.
+
